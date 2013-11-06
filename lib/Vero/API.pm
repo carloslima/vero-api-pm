@@ -43,7 +43,7 @@ sub identify_user {
         carp "Vero API returned error: code $code, error $err, data " . j($a->res->json);
         return;
     }
-    return 1;
+    return $a->res->json;
 }
 
 sub track_event {
@@ -69,7 +69,7 @@ sub track_event {
         carp "Vero API returned error: code $code, error $err, data " . j($a->res->json);
         return;
     }
-    return 1;
+    return $a->res->json;
 }
 
 1;

@@ -10,6 +10,8 @@ use Vero::API;
 
     package FakeUA::Success;
     sub new { bless {}, __PACKAGE__ }
+    sub res { return shift }
+    sub json { return {status => 200, message => "Success."} }
     sub post { my $s = shift; $s->{post} = [@_]; return $s; }
     sub success { return 1 }
 
@@ -48,13 +50,13 @@ subtest 'track_event' => sub {
             token => $token
         );
         subtest 'with both id and email' => sub {
-            is $v->track_event(
+            ok $v->track_event(
                 'test-running',
                 id    => 'CID000000',
                 email => 'fakeclient@example.com',
                 hello => 'world'
               ),
-              1, 'returns true when request succeeds';
+              'returns true when request succeeds';
             my $post = $v->ua->{post};
             ok $post, 'we POSTed some data.';
             like $post->[0], qr/api.getvero.com/, 'correct url.';
@@ -139,12 +141,12 @@ subtest 'identify_user' => sub {
             token => $token
         );
         subtest 'with both id and email' => sub {
-            is $v->identify_user(
+            ok $v->identify_user(
                 id    => 'CID000000',
                 email => 'fakeclient@example.com',
                 super => 'dupper'
               ),
-              1, 'returns true when request succeeds';
+              'returns true when request succeeds';
             my $post = $v->ua->{post};
             ok $post, 'we POSTed some data.';
             like $post->[0], qr/api.getvero.com/, 'correct url.';
