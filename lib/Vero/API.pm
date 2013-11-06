@@ -30,7 +30,7 @@ sub identify_user {
 
     croak 'id or email is required' unless defined $id or defined $email;
 
-    my $a = $self->ua->post(
+    my $tx = $self->ua->post(
         'https://api.getvero.com/api/v2/users/track.json',
         json => {
             auth_token => $self->token,
@@ -38,12 +38,12 @@ sub identify_user {
             ($email ? (email => $email) : ()),
             data => {%info},
         });
-    unless ($a->success) {
-        my ($err, $code) = $a->error;
-        carp "Vero API returned error: code $code, error $err, data " . j($a->res->json);
+    unless ($tx->success) {
+        my ($err, $code) = $tx->error;
+        carp "Vero API returned error: code $code, error $err, data " . j($tx->res->json);
         return;
     }
-    return $a->res->json;
+    return $tx->res->json;
 }
 
 sub track_event {
@@ -53,7 +53,7 @@ sub track_event {
 
     croak 'id or email is required' unless defined $id or defined $email;
 
-    my $a = $self->ua->post(
+    my $tx = $self->ua->post(
         'https://api.getvero.com/api/v2/events/track.json',
         json => {
             auth_token => $self->token,
@@ -64,12 +64,12 @@ sub track_event {
             event_name => $event_name,
             data       => {%info},
         });
-    unless ($a->success) {
-        my ($err, $code) = $a->error;
-        carp "Vero API returned error: code $code, error $err, data " . j($a->res->json);
+    unless ($tx->success) {
+        my ($err, $code) = $tx->error;
+        carp "Vero API returned error: code $code, error $err, data " . j($tx->res->json);
         return;
     }
-    return $a->res->json;
+    return $tx->res->json;
 }
 
 1;
