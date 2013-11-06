@@ -1,0 +1,32 @@
+#!/usr/bin/env perl
+use 5.010;
+use strict;
+use warnings qw(FATAL);
+
+use Vero::API;
+use Mojo::JSON;
+
+my $token  = $ENV{'vero-auth-token'};
+my $action = shift;
+if ($action =~ /identify|event/) {
+    &{$action}(@ARGV);
+} else {
+    say 'Bang!';
+}
+
+sub identify {
+    my ($id, $email, $data_json) = @_;
+}
+
+__END__
+    json => {
+        auth_token => token,
+        id         => 'LIVECARLOS1234',
+        email      => 'changed-again@example.net',
+        data       => {partial_update => 'repeatable',},
+
+        json => {
+            auth_token => token,
+            'identity' => {id => 'LIVECARLOS1234'},
+            event_name => 'need-id-trigger',
+            data       => {company_name => 'Binary.BOM',},
