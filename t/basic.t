@@ -117,7 +117,7 @@ subtest 'track_event' => sub {
             ua    => $error_ua,
             token => $token
         );
-        warning_is {
+        throws_ok {
             ok !$v->track_event(
                 'test-running',
                 id    => 'CID000000',
@@ -125,7 +125,7 @@ subtest 'track_event' => sub {
               ),
               'returns false when request fails';
         }
-        'Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}',
+        qr/Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}/,
           'Complain noisily when there is an error';
         throws_ok {
             $v->track_event('event_name', idont => 'haveid');
@@ -206,14 +206,14 @@ subtest 'identify_user' => sub {
             ua    => $error_ua,
             token => $token
         );
-        warning_is {
+        throws_ok {
             ok !$v->identify_user(
                 id    => 'BADID000000',
                 hello => 'world'
               ),
               'returns false when request fails';
         }
-        'Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}',
+        qr/Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}/,
           'Complain noisily when there is an error';
 
         throws_ok {

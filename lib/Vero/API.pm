@@ -5,6 +5,7 @@ use warnings;
 use Carp;
 use Moo;
 use namespace::autoclean;
+use failures qw/vero::api/;
 
 use Mojo::UserAgent;
 use Mojo::JSON 'j';
@@ -40,8 +41,7 @@ sub identify_user {
         });
     unless ($tx->success) {
         my ($err, $code) = $tx->error;
-        carp "Vero API returned error: code $code, error $err, data " . j($tx->res->json);
-        return;
+        failure::vero::api->throw("Vero API returned error: code $code, error $err, data " . j($tx->res->json));
     }
     return $tx->res->json;
 }
@@ -66,8 +66,7 @@ sub track_event {
         });
     unless ($tx->success) {
         my ($err, $code) = $tx->error;
-        carp "Vero API returned error: code $code, error $err, data " . j($tx->res->json);
-        return;
+        failure::vero::api->throw("Vero API returned error: code $code, error $err, data " . j($tx->res->json));
     }
     return $tx->res->json;
 }
