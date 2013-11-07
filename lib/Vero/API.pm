@@ -1,5 +1,5 @@
 package Vero::API;
-our $VERSION = 0.001;
+use version; our $VERSION = version->declare("v0.1.0");
 use 5.010;
 use Carp;
 use failures qw/vero::api/;
@@ -134,15 +134,6 @@ Example:
     $vero->track_event('bought-item', id => 'BR0001', item => 'Clock', price => '1.00');
 
 =back
-
-
-=head1 DEPENDENCIES
-
-L<Mojolicious>
-L<Carp>
-L<Moo>
-L<namespace::autoclean>
-L<failures>
 
 =head1 SEE ALSO
 
