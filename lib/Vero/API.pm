@@ -1,14 +1,11 @@
 package Vero::API;
 use 5.010;
-use strict;
-use warnings;
 use Carp;
-use Moo;
-use namespace::autoclean;
 use failures qw/vero::api/;
-
 use Mojo::UserAgent;
 use Mojo::JSON 'j';
+use Moo;
+use namespace::autoclean;
 
 has ua => (
     is      => 'rw',
@@ -72,3 +69,91 @@ sub track_event {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Vero::API - Perl interface to the Vero API.
+
+=head1 SYNOPSIS
+
+    use Vero::API;
+
+    my $vero = Vero::API->new( token => 'your-secret-auth-token' );
+
+    $vero->identify_user(
+        id      => 'BR0001',
+        email   => 'zezinho@example.com',
+        name    => 'Jose da Silva',
+        country => 'br',
+    );
+
+    $vero->track_event(
+        'favorited-item',
+        id      => 'BR0001',
+        item_id => 'bicicleta laranja',
+    );
+
+
+=head1 DESCRIPTION
+
+A quick and simple perl interface to L<Vero|www.getvero.com> API.
+
+C<Vero::API> uses L<Mojo::UserAgent> for talking to the Vero API
+using L<Mojo::JSON>.
+
+Response is parsed back from JSON and returned as perl data structure.
+
+=head1 METHODS
+
+=over 4
+
+=item C<< new(token => 'your-auth-token') >>
+
+Constructs a new C<Vero::API> object storing your C<token>.
+
+=item C<token>
+
+Returns the stored token.
+
+=item C<< identify_user(id => 'clientid', email => 'client@example.com', %extra_info) >>
+
+Calls the API to register/update a user record.
+
+=item C<< track_event($event_name, [id => $clientid,] [email => $email], %extra_info) >>
+
+Calls the API to register an event for that user.
+
+You can pass either one of id, email or both.
+Extra info passed in as a hash will be available to use on email templates triggered by that event.
+
+Example:
+
+    $vero->track_event('bought-item', id => 'BR0001', item => 'Clock', price => '1.00');
+
+=back
+
+
+=head1 DEPENDENCIES
+
+L<Mojolicious>
+L<Carp>
+L<Moo>
+L<namespace::autoclean>
+L<failures>
+
+=head1 SEE ALSO
+
+L<verocli>
+
+=head1 AUTHOR
+
+Carlos Lima C<< <carlos@cpan.org> >>
+
+=head1 LICENCE AND COPYRIGHT
+
+Copyright (c) 2013, Carlos Lima C<< <carlos@cpan.org> >>.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
