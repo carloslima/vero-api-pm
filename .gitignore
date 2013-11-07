@@ -1,2 +1,5 @@
 *.sw[po]
 cover_db
+/Vero-API-v*/
+/Vero-API-v*.tar.gz
+/.build/
