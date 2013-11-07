@@ -3,7 +3,6 @@ use 5.010;
 use strict;
 use warnings qw(FATAL);
 
-use Carp::Always;
 use Vero::API;
 use Mojo::JSON 'j';
 

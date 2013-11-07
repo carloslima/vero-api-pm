@@ -1,4 +1,5 @@
 package Vero::API;
+our $VERSION = 0.001;
 use 5.010;
 use Carp;
 use failures qw/vero::api/;
