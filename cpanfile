@@ -8,6 +8,7 @@ requires 'Mojo::UserAgent';
 requires 'Mojolicious';
 requires 'Moo';
 requires 'namespace::autoclean';
+requires 'IO::Socket::SSL';
 
 on test => sub {
     requires 'Test::Most';
