@@ -106,7 +106,7 @@ Vero::API - Perl interface to the Vero API.
 
 =head1 DESCRIPTION
 
-A quick and simple perl interface to L<Vero|www.getvero.com> API.
+A quick and simple perl interface to L<Vero|https://www.getvero.com> API.
 
 C<Vero::API> uses L<Mojo::UserAgent> for talking to the Vero API
 using L<Mojo::JSON>.
