@@ -141,11 +141,11 @@ L<verocli>
 
 =head1 AUTHOR
 
-Carlos Lima C<< <carlos@cpan.org> >>
+Carlos Lima <carlos@cpan.org>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2013, Carlos Lima C<< <carlos@cpan.org> >>.
+Copyright (c) 2013, Carlos Lima <carlos@cpan.org>.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
