@@ -41,6 +41,7 @@
       "runtime" : {
          "requires" : {
             "Carp" : "0",
+            "IO::Socket::SSL" : "0",
             "Mojo::UserAgent" : "0",
             "Mojolicious" : "0",
             "Moo" : "0",
@@ -50,14 +51,24 @@
       },
       "test" : {
          "requires" : {
-            "Test::Deep" : "0",
-            "Test::Exception" : "0",
             "Test::FailWarnings" : "0",
+            "Test::Fatal" : "0",
             "Test::Most" : "0"
          }
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/carloslima/vero-api-pm/issues"
+      },
+      "homepage" : "https://github.com/carloslima/vero-api-pm",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/carloslima/vero-api-pm.git",
+         "web" : "https://github.com/carloslima/vero-api-pm"
+      }
+   },
    "version" : "v0.1.0"
 }
 
