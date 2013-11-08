@@ -4,6 +4,7 @@ use Test::Most;
 use Test::Deep;
 use Test::Exception;
 use Test::FailWarnings;
+use Try::Tiny;
 use Vero::API;
 
 {
@@ -35,6 +36,8 @@ my $token      = 'vero-api-pm-test-token';
 subtest 'constructor' => sub {
     my $v = new_ok 'Vero::API', [token => $token];
     is $v->token, $token, 'created with correct token';
+    my $agentid = try { $v->ua->transactor->name } || $v->ua->name;
+    is $agentid, "Vero::API/$Vero::API::VERSION (Perl)", 'User agent correctly identifies itself';
     throws_ok { Vero::API->new } qr/A token is required/, 'Constructor requires a token';
     new_ok 'Vero::API', [token => ''], 'but it can be empty';
     my $o = new_ok 'My::VeroAPI', [], 'or overriden';

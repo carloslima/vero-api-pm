@@ -10,8 +10,15 @@ use namespace::autoclean;
 
 has ua => (
     is      => 'rw',
-    default => sub { Mojo::UserAgent->new },
+    builder => 1,
 );
+sub _build_ua {
+    my $ua      = Mojo::UserAgent->new;
+    my $agentid = "Vero::API/$VERSION (Perl)";
+    # $ua->name was deprecated on Mojolicious 4.50
+    $ua->transactor->can('name') ? $ua->transactor->name($agentid) : $ua->name($agentid);
+    return $ua;
+}
 
 has token => (
     is      => 'rw',
