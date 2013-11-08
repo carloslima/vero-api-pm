@@ -135,6 +135,14 @@ Example:
 
 =back
 
+=head1 STATUS
+
+=begin html
+
+<p><a href="https://travis-ci.org/carloslima/vero-api-pm"><img src="https://travis-ci.org/carloslima/vero-api-pm.png?branch=master" alt="Build Status" style="max-width:100%;"></a></p>
+
+=end html
+
 =head1 SEE ALSO
 
 L<verocli>
