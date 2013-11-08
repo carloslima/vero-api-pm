@@ -11,7 +11,6 @@ requires 'namespace::autoclean';
 
 on test => sub {
     requires 'Test::Most';
-    requires 'Test::Deep';
-    requires 'Test::Exception';
+    requires 'Test::Fatal';
     requires 'Test::FailWarnings';
 };

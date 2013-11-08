@@ -1,8 +1,7 @@
 use strict;
 use warnings;
 use Test::Most;
-use Test::Deep;
-use Test::Exception;
+use Test::Fatal;
 use Test::FailWarnings;
 use Try::Tiny;
 use Vero::API;
@@ -38,7 +37,7 @@ subtest 'constructor' => sub {
     is $v->token, $token, 'created with correct token';
     my $agentid = try { $v->ua->transactor->name } || $v->ua->name;
     is $agentid, "Vero::API/$Vero::API::VERSION (Perl)", 'User agent correctly identifies itself';
-    throws_ok { Vero::API->new } qr/A token is required/, 'Constructor requires a token';
+    like exception { Vero::API->new }, qr/A token is required/, 'Constructor requires a token';
     new_ok 'Vero::API', [token => ''], 'but it can be empty';
     my $o = new_ok 'My::VeroAPI', [], 'or overriden';
     is $o->token, 'vero-api-pm-overriden-token', 'Takes correct token when overriding';
@@ -120,20 +119,19 @@ subtest 'track_event' => sub {
             ua    => $error_ua,
             token => $token
         );
-        throws_ok {
-            ok !$v->track_event(
+        my $exception = exception {
+            $v->track_event(
                 'test-running',
                 id    => 'CID000000',
                 hello => 'world'
-              ),
-              'returns false when request fails';
-        }
-        qr/Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}/,
-          'Complain noisily when there is an error';
-        throws_ok {
+            );
+        };
+        like $exception, qr/Vero API returned error: code 999, error to err is human., data {"/, 'Complain noisily when there is an error';
+        like $exception, qr/"status":400/,                                                       'Complain noisily when there is an error';
+        like $exception, qr/"message":"damn humans."/,                                           'Complain noisily when there is an error';
+        like exception {
             $v->track_event('event_name', idont => 'haveid');
-        }
-        qr/id or email is required/, 'Giving neither id nor email fails';
+        }, qr/id or email is required/, 'Giving neither id nor email fails';
     };
 };
 
@@ -209,20 +207,19 @@ subtest 'identify_user' => sub {
             ua    => $error_ua,
             token => $token
         );
-        throws_ok {
-            ok !$v->identify_user(
+        my $exception = exception {
+            $v->identify_user(
                 id    => 'BADID000000',
                 hello => 'world'
-              ),
-              'returns false when request fails';
-        }
-        qr/Vero API returned error: code 999, error to err is human., data {"status":400,"message":"damn humans."}/,
-          'Complain noisily when there is an error';
+            );
+        };
+        like $exception, qr/Vero API returned error: code 999, error to err is human., data {"/, 'Complain noisily when there is an error';
+        like $exception, qr/"status":400/,                                                       'Complain noisily when there is an error';
+        like $exception, qr/"message":"damn humans."/,                                           'Complain noisily when there is an error';
 
-        throws_ok {
+        like exception {
             $v->identify_user(idont => 'haveid');
-        }
-        qr/id or email is required/, 'Giving neither id nor email fails';
+        }, qr/id or email is required/, 'Giving neither id nor email fails';
     };
 };
 
