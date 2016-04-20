@@ -126,7 +126,7 @@ subtest 'track_event' => sub {
                 hello => 'world'
             );
         };
-        like $exception, qr/Vero API returned error: code 999, error to err is human., data {"/, 'Complain noisily when there is an error';
+        like $exception, qr/Vero API returned error: code 999, error to err is human., data \{"/, 'Complain noisily when there is an error';
         like $exception, qr/"status":400/,                                                       'Complain noisily when there is an error';
         like $exception, qr/"message":"damn humans."/,                                           'Complain noisily when there is an error';
         like exception {
@@ -213,7 +213,7 @@ subtest 'identify_user' => sub {
                 hello => 'world'
             );
         };
-        like $exception, qr/Vero API returned error: code 999, error to err is human., data {"/, 'Complain noisily when there is an error';
+        like $exception, qr/Vero API returned error: code 999, error to err is human., data \{"/, 'Complain noisily when there is an error';
         like $exception, qr/"status":400/,                                                       'Complain noisily when there is an error';
         like $exception, qr/"message":"damn humans."/,                                           'Complain noisily when there is an error';
 
