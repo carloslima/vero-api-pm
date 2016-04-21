@@ -1,5 +1,5 @@
 package Vero::API;
-use version; our $VERSION = version->declare("v0.1.1");
+use version; our $VERSION = version->declare("v0.1.2");
 use 5.010;
 use Carp;
 use failures qw/vero::api/;
