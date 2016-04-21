@@ -21,8 +21,6 @@ Vero::API - Perl interface to the Vero API.
         item_id => 'bicicleta laranja',
     );
 
-
-
 # DESCRIPTION
 
 A quick and simple perl interface to [Vero](https://www.getvero.com) API.
@@ -59,7 +57,9 @@ Response is parsed back from JSON and returned as perl data structure.
 
 # STATUS
 
-<p><a href="https://travis-ci.org/carloslima/vero-api-pm"><img src="https://travis-ci.org/carloslima/vero-api-pm.png?branch=master" alt="Build Status" style="max-width:100%;"></a></p>
+<div>
+    <p><a href="https://travis-ci.org/carloslima/vero-api-pm"><img src="https://travis-ci.org/carloslima/vero-api-pm.png?branch=master" alt="Build Status" style="max-width:100%;"></a></p>
+</div>
 
 # SEE ALSO
 

@@ -4,7 +4,7 @@
       "Carlos Lima <carlos@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.132830",
+   "generated_by" : "Dist::Zilla version 5.044, Dist::Milla version v1.0.15, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -15,27 +15,31 @@
    "name" : "Vero-API",
    "no_index" : {
       "directory" : [
-         "t",
-         "xt",
+         "eg",
+         "examples",
          "inc",
          "share",
-         "eg",
-         "examples"
+         "t",
+         "xt"
       ]
    },
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.030",
+            "Module::Build::Tiny" : "0.034",
             "version" : "0.77"
          }
       },
       "develop" : {
          "requires" : {
+            "Dist::Milla" : "v1.0.15",
             "Test::CPAN::Meta" : "0",
-            "Test::More" : "0",
+            "Test::EOL" : "0",
+            "Test::More" : "0.88",
             "Test::NoTabs" : "0",
-            "Test::Pod" : "1.41"
+            "Test::Pod" : "1.41",
+            "Test::Spelling" : "0.12",
+            "Test::Version" : "1"
          }
       },
       "runtime" : {
@@ -69,6 +73,9 @@
          "web" : "https://github.com/carloslima/vero-api-pm"
       }
    },
-   "version" : "v0.1.1"
+   "version" : "v0.1.2",
+   "x_contributors" : [
+      "Glenn Fowler <cebjyre@cpan.org>"
+   ]
 }
 
